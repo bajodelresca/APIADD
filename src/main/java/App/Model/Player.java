@@ -57,7 +57,8 @@ public class Player {
     @Column(name = "mvp")
     private Long mvp;
     
-    @JsonBackReference
+    
+    //@JsonBackReference
     @ManyToOne(fetch = FetchType.EAGER ,cascade = {CascadeType.MERGE})
     @JoinColumn(name = "idequipo")
     @JsonIgnoreProperties(value={"repertorio"},allowSetters = true)    
