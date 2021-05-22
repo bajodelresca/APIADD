@@ -38,6 +38,8 @@ public class Player {
     @NotBlank
     @Column(name = "name")
     private String name;
+    @Column(name = "admin")
+    private String admin;
     @Column(name = "email")
     private String email;
     @Column(name = "password")
@@ -171,10 +173,20 @@ public class Player {
         this.password = password;
     }
 
+    public String getAdmin() {
+        return admin;
+    }
+
+    public void setAdmin(String admin) {
+        this.admin = admin;
+    }
+
     @Override
     public String toString() {
-        return "Player{" + "id=" + id + ", name=" + name + ", email=" + email + ", password=" + password + ", image=" + image + ", games=" + games + ", goals=" + goals + ", assists=" + assists + ", yellowcards=" + yellowcards + ", redcards=" + redcards + ", mvp=" + mvp + ", team=" + team + '}';
+        return "Player{" + "id=" + id + ", name=" + name + ", admin=" + admin + ", email=" + email + ", password=" + password + ", image=" + image + ", games=" + games + ", goals=" + goals + ", assists=" + assists + ", yellowcards=" + yellowcards + ", redcards=" + redcards + ", mvp=" + mvp + ", team=" + team + '}';
     }
+
+    
 
     
     

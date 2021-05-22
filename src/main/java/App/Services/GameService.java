@@ -86,5 +86,26 @@ public class GameService {
             throw new RecordNotFoundException("No item record exist for given id",id);
         }
     }    
+    
+    public List<Game> getAllGamesid()
+    {
+        List<Game> Gamelist = repository.getByidorder();
+         
+        if(Gamelist.size() > 0) {
+            return Gamelist;
+        } else {
+            return new ArrayList<Game>();
+        }
+    }
+public List<Game> getGamesbyTeam(Long id)
+    {
+        List<Game> Gamelist = repository.getByTeamId(id);
+         
+        if(Gamelist.size() > 0) {
+            return Gamelist;
+        } else {
+            return new ArrayList<Game>();
+        }
+    }
 
 }

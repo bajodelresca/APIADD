@@ -58,6 +58,7 @@ public class PlayerService {
                 Player newEntity = player.get();
                 //newEntity.setId(entity.getId());
                 newEntity.setName(entity.getName());
+                newEntity.setAdmin(entity.getAdmin());
                 newEntity.setImage(entity.getImage());
                 newEntity.setGames(entity.getGames());
                 newEntity.setGoals(entity.getGoals());

@@ -6,6 +6,7 @@
 package App.Model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -59,26 +60,28 @@ public class Team {
     private Long createdate;
     @Column(name = "points")
     private Long points;
-
+    
+    
     @JsonIgnoreProperties(value={"team"},allowSetters = true)
     @OneToMany(mappedBy = "team", cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
     @OnDelete(action = OnDeleteAction.CASCADE)
     protected Set<Player> repertorio;
 
-    @Column(name = "JORNADAS")
+    //@JsonBackReference
+    //@Column(name = "JORNADAS")
     @JoinTable(name = "jornadas", joinColumns = @JoinColumn(name = "FK_TEAM", nullable = false), inverseJoinColumns = @JoinColumn(name = "FK_GAME", nullable = false))
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JsonIgnoreProperties(value = {"t"}, allowSetters = true)
-    private List<Game> matches;
+    private Set<Game> matches;
 
-    public List<Game> getMatches() {
+    public Set<Game> getMatches() {
         return matches;
     }
 
-    public void setMatches(List<Game> matches) {
+    public void setMatches(Set<Game> matches) {
         if (matches == null) {
-            matches = new ArrayList<Game>();
+            matches = new HashSet<Game>();
         }
         this.matches = matches;
         for (Game exercise : matches) {

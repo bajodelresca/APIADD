@@ -102,4 +102,28 @@ public class GameServiceController {
         service.deleteTeamById(id);
         return HttpStatus.ACCEPTED;
     }
+    @ApiOperation(value = "GetallItembIDORDER", notes = "Esta función devuelve una lista de equipos ordenada por Points, junto a una respuesta HTTP")
+    @ApiResponses(value = {
+        @ApiResponse(code = 200, message = "OK. El recurso se obtiene correctamente", response = Game.class),
+        @ApiResponse(code = 400, message = "Bad Request"),
+        @ApiResponse(code = 500, message = "Error inesperado del sistema")})
+    @GetMapping("/ids")
+    public ResponseEntity<List<Game>> getAllItemsPoints() {
+        List<Game> list = service.getAllGamesid();
+
+        return new ResponseEntity<List<Game>>(list, new HttpHeaders(), HttpStatus.OK);
+    }
+@ApiOperation(value = "getGameByTeam", notes = "Esta función buscara un partido por equipo, junto a una respuesta HTTP")
+    @ApiResponses(value = {
+        @ApiResponse(code = 200, message = "OK. El recurso se obtiene correctamente", response = Game.class),
+        @ApiResponse(code = 400, message = "Bad Request"),
+        @ApiResponse(code = 500, message = "Error inesperado del sistema")})
+    @GetMapping("/byteam/{id}")
+    public ResponseEntity<List<Game>> getGameByTeam(@PathVariable("id") Long id) throws RecordNotFoundException {
+        List<Game> list = service.getGamesbyTeam(id);
+
+        return new ResponseEntity<List<Game>>(list, new HttpHeaders(), HttpStatus.OK);
+    }
+
+
 }
