@@ -85,9 +85,9 @@ public class Team {
         }
         this.matches = matches;
         for (Game exercise : matches) {
-            List<Team> list = exercise.getT();
+            Set<Team> list = exercise.getT();
             if (list == null) {
-                list = new ArrayList<Team>();
+                list = new HashSet<Team>();
             }
             if (!list.contains(this)) {
                 list.add(this);

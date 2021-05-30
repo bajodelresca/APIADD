@@ -42,7 +42,8 @@ public class Game {
 
     @ManyToMany(fetch = FetchType.EAGER, mappedBy = "matches", cascade = CascadeType.MERGE)
     @JsonIgnoreProperties(value = {"matches"}, allowSetters = true)
-    private List<Team> t;
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    private Set<Team> t;
 
     public Long getId() {
         return id;
@@ -68,13 +69,13 @@ public class Game {
         this.resultado = resultado;
     }
 
-    public List<Team> getT() {
+    public Set<Team> getT() {
         return t;
     }
 
-    public void setT(List<Team> t) {
+    public void setT(Set<Team> t) {
         if (t == null) {
-            t = new ArrayList<Team>();
+            t = new HashSet<Team>();
         }
         this.t = t;
         for (Team team : t) {
